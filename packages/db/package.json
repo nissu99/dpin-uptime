@@ -2,6 +2,11 @@
   "name": "db",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "db:generate": "prisma generate --schema prisma/schema.prisma",
+    "db:migrate": "prisma migrate deploy --schema prisma/schema.prisma",
+    "check-types": "tsc --noEmit"
+  },
   "exports": {
     "./client": "./src/index.ts"
   },
@@ -12,6 +17,7 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "@prisma/client": "6.5.0",
     "prisma": "^6.5.0"
   },
   "prisma": {

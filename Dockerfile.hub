@@ -1,0 +1,12 @@
+FROM oven/bun:1.2.18-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN bun install --frozen-lockfile
+RUN bunx prisma generate --schema packages/db/prisma/schema.prisma
+
+EXPOSE 8081
+
+CMD ["bun", "apps/hub/index.ts"]

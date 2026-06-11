@@ -1,0 +1,20 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dpin-uptime-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: dpin_uptime
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - dpin-uptime-postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d dpin_uptime"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  dpin-uptime-postgres:

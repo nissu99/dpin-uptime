@@ -4,6 +4,12 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:api": "bun run --cwd apps/api dev",
+    "dev:frontend": "bun run --cwd apps/frontend dev",
+    "dev:hub": "bun run --cwd apps/hub dev",
+    "dev:validator": "bun run --cwd apps/validator dev:validator",
+    "db:generate": "bun run --cwd packages/db db:generate",
+    "db:migrate": "bun run --cwd packages/db db:migrate",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types"

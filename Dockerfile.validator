@@ -1,0 +1,9 @@
+FROM oven/bun:1.2.18-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN bun install --frozen-lockfile
+
+CMD ["bun", "apps/validator/index.ts"]

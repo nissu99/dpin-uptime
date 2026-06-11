@@ -1,0 +1,20 @@
+FROM oven/bun:1.2.18-alpine
+
+WORKDIR /app
+
+COPY . .
+
+ARG NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+ARG NEXT_PUBLIC_API_BACKEND_URL
+
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+ENV NEXT_PUBLIC_API_BACKEND_URL=$NEXT_PUBLIC_API_BACKEND_URL
+
+RUN bun install --frozen-lockfile
+RUN bun run --cwd apps/frontend build
+
+WORKDIR /app/apps/frontend
+
+EXPOSE 3000
+
+CMD ["bun", "run", "start"]
